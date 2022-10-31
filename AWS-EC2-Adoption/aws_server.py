@@ -84,33 +84,31 @@ def connect_reverse_proxy():
 
 
 ####################################################################
-########################## Main Function ###########################
+########################## Función Main ############################
 ####################################################################
 
 if __name__ == "__main__":
     option_check()
-    s = socket.socket()         # Create a socket object
-    host = '172.31.21.234'      # Get local machine name
-    port = int(args[2])              # Reserve a port for your service.
+    #Creamos objeto socket
+    s = socket.socket()
+    host = '172.31.21.234'      # ip de la instancia donde corre el proxy
+    #El puerto se recibe como argumento
+    port = int(args[2])
 
 
-    print ("Server running with id", args[0])
-    print ("Server serving privacy policy", args[1])
-    print ("Listening on port", args[2])
+    print ("Server corriendo con id", args[0])
+    print ("Esperando en puerto", args[2])
     
-    # Broadcast "Alive" status to the Reverse Proxy first
+    #Iniciamos conexión
     connect_reverse_proxy()
-    print ("Connecting to the reverse proxy on port", args[3])
-
-    # Binds to the port
+    print ("Conectando el proxy inverso al puerto", args[3])
     s.bind((host, port))     
-    # Allow 10 clients to connect
+    #Se permite tener hasta 10 clientes conectados
     s.listen(10)                 
 
-    # Receive/Process each client connection in a seperate thread
+    #Recibe cada conexión en un hilo diferente
     while True:
-        c, addr = s.accept()     # Establish connection with client.
-        # lock acquired by client
+        c, addr = s.accept()     # Establecemos conexión con el proxy
         print_lock.acquire()
         print ('Received a message from client', addr, "payload")
         _thread.start_new_thread(on_new_client,(c,addr))
