@@ -9,7 +9,7 @@ En este sentido, un proxy inverso se entiende como aquel que recibe (intercepta)
 una de las peticiones del cliente y la envía a un servidor con la capacidad de procesar la
 petición para finalmente enviar la respuesta al cliente.
 
-Foto PILB
+![image](./AWS-EC2-Adoption/PILB.jpg)
 
 ## Desarrollo
 Los códigos se despliegan en la nube de Amazon Web Services empleando instancias EC2 (Amazon Linux).
