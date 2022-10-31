@@ -91,7 +91,7 @@ if __name__ == "__main__":
     option_check()
     #Creamos objeto socket
     s = socket.socket()
-    host = '172.31.21.234'      # ip de la instancia donde corre el proxy
+    host = '172.31.21.234'      # ip de la instancia donde corre el server
     #El puerto se recibe como argumento
     port = int(args[2])
 
