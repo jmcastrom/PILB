@@ -48,6 +48,25 @@ Esto deberá ser realizado para cada una de las instancias que tengamos.
 * Correr servidor en el puerto 8080 (desde la instancia proxy)
 
     ```sh
-    $ python3 aws_rproxy.py -port 8080
+    $ python3 aws_server.py -id 100 -pp 111 -listen 5000 -revproc 8080
     ```
+    
+Los valores (id/pp/listen/revproc) son argumentos de entrada, por lo que se pueden cambiar a conveniencia.
+
+Una vez se esté ejecutando el proxy en el puerto deseado, y los servidores estén sincronizados con este, se le podrán realizar peticiones HTTP/1.1, ya sea desde un navegador, untilizando el comando `curl`, etc. Para esto necesitaremos la dirección ip pública de la instancia donde se ejecuta el proxy y el puerto en el que está corriendo.
+El proxy recibirá la petición, se la enviará a uno de los servidores que tenga disponibles (basándose en el Round Robin), recibirá la respuesta de el servidor y se la retornará al cliente el formato texto
+
+* Ejemplo de petición HTTP/1.1 utilizando `curl` desde el cmd
+
+    ```sh
+    > curl 127.00.000:8080
+    ```
+
+## Agradecimientos/Referencias
+
+* [Stack Overflow](https://stackoverflow.com/)
+* [Github](https://github.com)
+* [Shanto Roy](https://shantoroy.com/network/write-a-reverse-proxy-server-in-python/)
+* [João Ventura](https://www.codementor.io/@joaojonesventura/building-a-basic-http-server-from-scratch-in-python-1cedkg0842) 
+* Al profe
 
