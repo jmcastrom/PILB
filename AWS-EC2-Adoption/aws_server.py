@@ -110,7 +110,7 @@ if __name__ == "__main__":
     while True:
         c, addr = s.accept()     # Establecemos conexión con el proxy
         print_lock.acquire()
-        print ('Received a message from client', addr, "payload")
+        print ('Mensaje recibido del cliente con ip', addr)
         _thread.start_new_thread(on_new_client,(c,addr))
         
     s.close()
