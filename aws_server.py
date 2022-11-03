@@ -68,7 +68,7 @@ if __name__ == "__main__":
     s = socket.socket()
     host = '172.31.21.234'      # ip de la instancia donde corre el server
     #El puerto se recibe como argumento
-    port = int(args[2])
+    port = int(args[1])
 
     print ("Server corriendo con id", args[0])
     print ("Esperando en puerto", args[1])
