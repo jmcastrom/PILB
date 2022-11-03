@@ -71,7 +71,7 @@ if __name__ == "__main__":
     port = int(args[2])
 
     print ("Server corriendo con id", args[0])
-    print ("Esperando en puerto", args[2])
+    print ("Esperando en puerto", args[1])
         
     s.bind((host, port))     
     #Se permite tener hasta 10 clientes conectados
