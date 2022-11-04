@@ -39,7 +39,7 @@ def option_check():
 ####################################################################
 
 #Lista de servidores disponibles y sus puertos
-servers=[['172.31.21.234', '8080'], ['google.com', '']]
+servers=[['172.31.21.234', '5000'], ['google.com', '80']]
 n = -1
 #Función que servirá para iterar entre los servidores disponibles
 def round_rob_server():
@@ -69,7 +69,9 @@ def on_new_client(clientsocket,addr):
         contact_server = round_rob_server()
         #La ip y el puerto de los server se toma de la lista de servidores en base a Round Robin
         server_name = contact_server[0]
+        print(server_name)
         server_port = int(contact_server[1])
+        print(server_port)
         server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_socket.connect((server_name,server_port))        
         print("Reenviando datos a servidor con ip", server_name, \
