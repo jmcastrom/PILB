@@ -49,10 +49,14 @@ def on_new_client(clientsocket,addr):
         if not msg:
             print_lock.release()
             break
+        # Obtener contenido de htdocs/index.html
+        fin = open('index.html')
+        content = fin.read()
+        fin.close()
         #Response a enviar
-        response='HTTP/1.0 200 OK\n\nConexión establecida con el servidor' 
-        print("Mensaje recibido del cliente: ", ip, "port", port, "response", response)
-        clientsocket.send(response.encode())
+        response = 'HTTP/1.0 200 OK\n\n' + content
+        print("Mensaje enviado a cliente: ", ip, "port", port, "response", response)
+        clientsocket.sendall(response.encode())
     #Cerramos conexión con proxy
     clientsocket.close()
 
@@ -68,7 +72,7 @@ if __name__ == "__main__":
     s = socket.socket()
     host = '172.31.21.234'      # ip de la instancia donde corre el server
     #El puerto se recibe como argumento
-    port = int(args[1])
+    port = int(args[2])
 
     print ("Server corriendo con id", args[0])
     print ("Esperando en puerto", args[1])
