@@ -48,7 +48,7 @@ Esto deberá ser realizado para cada una de las instancias que tengamos.
 * Correr servidor en el puerto 8080 (desde la instancia proxy)
 
     ```sh
-    $ python3 aws_server.py -id 100 -pp 111 -listen 5000 -revproc 8080
+    $ python3 aws_server.py -id 100 -listen 5000
     ```
     
 Los valores (id/pp/listen/revproc) son argumentos de entrada, por lo que se pueden cambiar a conveniencia.
