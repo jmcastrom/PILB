@@ -54,7 +54,7 @@ Esto deberá ser realizado para cada una de las instancias que tengamos.
 Los valores (id/pp/listen/revproc) son argumentos de entrada, por lo que se pueden cambiar a conveniencia.
 
 Una vez se esté ejecutando el proxy en el puerto deseado, y los servidores estén sincronizados con este, se le podrán realizar peticiones HTTP/1.1, ya sea desde un navegador, untilizando el comando `curl`, etc. Para esto necesitaremos la dirección ip pública de la instancia donde se ejecuta el proxy y el puerto en el que está corriendo.
-El proxy recibirá la petición, se la enviará a uno de los servidores que tenga disponibles (basándose en el Round Robin), recibirá la respuesta de el servidor y se la retornará al cliente el formato texto
+El proxy recibirá la petición, se la enviará a uno de los servidores que tenga disponibles (basándose en el Round Robin), recibirá la respuesta de el servidor y se la retornará al cliente
 
 * Ejemplo de petición HTTP/1.1 utilizando `curl` desde el cmd
 
