@@ -61,6 +61,9 @@ def on_new_client(clientsocket,addr):
             print_lock.release()
             break
         print("request: ", request)
+        #Guardamos la petición enarchivo txt
+        with open("log.txt", "a") as text_file:
+            text_file.write(request + "\n")
         #Obtener datos del cliente (ip y puerto)
         ip, port = clientsocket.getpeername()
         print ('Mensaje recibido del cliente: ', ip, \
