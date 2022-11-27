@@ -38,6 +38,24 @@ def option_check():
 ######################## Funciones básicas #########################
 ####################################################################
 
+#Caché
+cacheDict={}
+
+#Funcíon que guarda el caché en diccionario
+def save_cache(id, response):
+    if not id in d:
+        print("Guardado en caché")
+        cacheDict[id]=response
+        print("Cache: ", cacheDict)
+        
+#Función que retorna el caché del diccionario        
+def return_cache(id):
+    if id in d:
+        return cacheDict[id]
+    else:
+        return "Hubo un fallo en el servidor y no se encontr+o registro de caché"    
+    
+    
 #Lista de servidores disponibles y sus puertos
 servers=[['172.31.21.234', '5000'], ['google.com', '80']]
 n = -1
@@ -61,6 +79,7 @@ def on_new_client(clientsocket,addr):
             print_lock.release()
             break
         print("request: ", request)
+        
         #Guardamos la petición enarchivo txt
         with open("log.txt", "a") as text_file:
             text_file.write(request + "\n")
@@ -75,18 +94,23 @@ def on_new_client(clientsocket,addr):
         print(server_name)
         server_port = int(contact_server[1])
         print(server_port)
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        server_socket.connect((server_name,server_port))        
-        print("Reenviando datos a servidor con ip", server_name, \
-                                                "port", server_port)
-        #La petición es enviada al servidor
-        server_socket.send(request.encode())
-        #La respuesta del servidor se devuelve al cliente
-        response = server_socket.recv(2048).decode()
-        print("Response recibida", response)
-        print("")
-        #Cerramos conexión con el server
-        server_socket.close()
+        try:
+            server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            server_socket.connect((server_name,server_port))        
+            print("Reenviando datos a servidor con ip", server_name, \
+                                                    "port", server_port)
+            #La petición es enviada al servidor
+            server_socket.send(request.encode())
+            #La respuesta del servidor se devuelve al cliente
+            response = server_socket.recv(2048).decode()
+            save_Cache(server_name, response)
+            print("Response recibida", response)
+            print("")
+            #Cerramos conexión con el server
+            server_socket.close()
+        except:
+            print("Hubo un problema en la conexión, respuesta entregada desde caché")
+            response = return_cache(server_name)
         print("Enviando response", response,)
         clientsocket.sendall(response.encode())
         print("Response se ha envíado al cliente correctamente")
