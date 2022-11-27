@@ -103,7 +103,7 @@ def on_new_client(clientsocket,addr):
             server_socket.send(request.encode())
             #La respuesta del servidor se devuelve al cliente
             response = server_socket.recv(2048).decode()
-            save_Cache(server_name, response)
+            save_cache(server_name, response)
             print("Response recibida", response)
             print("")
             #Cerramos conexión con el server
