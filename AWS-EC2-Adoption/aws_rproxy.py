@@ -43,14 +43,14 @@ cacheDict={}
 
 #Funcíon que guarda el caché en diccionario
 def save_cache(id, response):
-    if not id in d:
+    if not id in cacheDict:
         print("Guardado en caché")
         cacheDict[id]=response
         print("Cache: ", cacheDict)
         
 #Función que retorna el caché del diccionario        
 def return_cache(id):
-    if id in d:
+    if id in cacheDict:
         return cacheDict[id]
     else:
         return "Hubo un fallo en el servidor y no se encontr+o registro de caché"    
